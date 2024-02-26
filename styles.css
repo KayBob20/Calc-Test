@@ -1,0 +1,97 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: blanchedalmond;
+    margin: auto;
+    margin-top: 10%; /* Adjust this value as needed */
+    padding: 4%;
+    max-width: 800px;
+    width: 70%;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px; /* Controls distance between input box and button */
+    padding: 6px;
+}
+
+button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 3px solid #ffffff;
+    background-color: #0cbbaa;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition-duration: 0.2s; /* Set the default transition duration */
+}
+
+button:hover {
+    transform: scale(1.1); /* Scale the button slightly larger on hover */
+}
+
+/* Define the animation */
+@keyframes buttonClick {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Apply the animation to buttons */
+button:active {
+    animation: buttonClick 0.9s ease normal; /* Set animation-fill-mode to forwards */
+}
+
+/* This removes the arrow keys from the input boxes: */
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input {
+    padding: 10px;
+    /* border: 3px solid #0cbbaa; */
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: border-color, background-color 0.3s ease;
+    text-align: center;
+    color: #cfcfcf;
+}
+
+/* This determines what color the input box border is when the user is typing in it */
+
+input:focus {
+    /* border-color: #f2ff65; */
+    background-color: #dafbf7;
+    outline: none;
+}
+
+.input-active {
+    color: black; /* Makes the text black indicating that you can type in it */
+}
+
+.active {
+    background-color: #ffffff; /* Change this to the color you want */
+    color: #0cbbaa; /* Change this to the color you want */
+    border: 3px solid #0cbbaa;
+    transition-duration: 0.2s;
+}
+
+.active:hover {
+    transform: scale(1.1); /* Scale the button slightly larger on hover */
+}
+
+.final-total {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: antiquewhite;
+    margin: auto;
+    padding: 3%;
+    max-width: 500px;
+    width: 30%;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tooltip Example</title>
+  <style>
+    
+    .tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+}
+
+  </style>
+</head>
+<body>
+  <div class="tooltip-container">
+    <button id="tooltipBtn">Hover me</button>
+    <span class="tooltip-text" id="tooltipText">This is a tooltip</span>
+  </div>
+
+</body>
+</html>

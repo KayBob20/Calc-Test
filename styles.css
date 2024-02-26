@@ -24,7 +24,7 @@ button {
     color: white;
     font-size: 16px;
     cursor: pointer;
-    transition-duration: 0.2s; /* Set the default transition duration */
+    /* transition-duration: 0.2s; Set the default transition duration */
 }
 
 button:hover {
@@ -78,7 +78,7 @@ input:focus {
     background-color: #ffffff; /* Change this to the color you want */
     color: #0cbbaa; /* Change this to the color you want */
     border: 3px solid #0cbbaa;
-    transition-duration: 0.2s;
+    /* transition-duration: 0.2s; */
 }
 
 .active:hover {

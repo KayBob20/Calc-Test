@@ -54,11 +54,6 @@ button {
     /* transition-duration: 0.2s; Set the default transition duration */
 }
 
-.greyed-out {
-  border: 3px solid #bbd7d1;
-  background-color: #4d837d;
-}
-
 #copyButton {
   width: auto;
 }
@@ -144,7 +139,7 @@ input:focus {
 .the-grid {
   display: grid;
   grid-template-columns: repeat(15, 1fr);
-  grid-template-rows: repeat(2, 1fr) 3% repeat(6, 1fr);
+  grid-template-rows: repeat(6, 1fr);
   width: 100%;
   gap: 10px;
 }
@@ -258,11 +253,7 @@ input:focus {
 
 .twod-add-ons {
     grid-area: 3 / 1 / 3 / 16;
-    background-color: #2ecabb;
-    text-align: center;
-    display: flex;
-    align-items: center; /* Align text vertically */
-    justify-content: center; /* Align text horizontally */
+    background-color: #0000002f;
 }
 
 .lineart {
@@ -299,8 +290,8 @@ input:focus {
     grid-area: 6 / 11 / 6 / 16;
     background-color: #0000002f;
 }
-
-</style>
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -396,169 +387,102 @@ input:focus {
 </div>
 
 <script>
-const headshotBtn = document.getElementById('headshotBtn');
-const halfbodyBtn = document.getElementById('halfbodyBtn');
-const fullbodyBtn = document.getElementById('fullbodyBtn');
-const headshotInput = document.getElementById('headshotInput');
-const halfbodyInput = document.getElementById('halfbodyInput');
-const fullbodyInput = document.getElementById('fullbodyInput');
-const totalDisplay = document.getElementById('total');
-const sketchBtn = document.getElementById('sketchBtn');
-const cleanBtn = document.getElementById('cleanBtn');
-const totalInput = document.getElementById('totalInput'); // Define totalInput
+$(document).ready(function() {
+  const headshotBtn = $('#headshotBtn');
+  const halfbodyBtn = $('#halfbodyBtn');
+  const fullbodyBtn = $('#fullbodyBtn');
+  const headshotInput = $('#headshotInput');
+  const halfbodyInput = $('#halfbodyInput');
+  const fullbodyInput = $('#fullbodyInput');
+  const totalDisplay = $('#total');
+  const sketchBtn = $('#sketchBtn');
+  const cleanBtn = $('#cleanBtn');
+  const totalInput = $('#totalInput');
 
-let headshotTotal = 0;
-let halfbodyTotal = 0;
-let fullbodyTotal = 0;
+  let headshotTotal = 0;
+  let halfbodyTotal = 0;
+  let fullbodyTotal = 0;
 
-// Existing code for button click handling and total updating...
+  // Add logic for sketchBtn and cleanBtn
+  sketchBtn.click(function() {
+    $(this).toggleClass('active');
+    cleanBtn.removeClass('active');
+    updateStylePricing();
+    updateButtonStates();
+  });
 
-// Add logic for sketchBtn and cleanBtn
-sketchBtn.addEventListener('click', function() {
-  if (this.classList.contains('active')) {
-    this.classList.remove('active');
-  } else {
-    this.classList.add('active');
-    cleanBtn.classList.remove('active');
+  cleanBtn.click(function() {
+    $(this).toggleClass('active');
+    sketchBtn.removeClass('active');
+    updateStylePricing();
+    updateButtonStates();
+  });
+
+  // Update button states and remove 'active' class from headshot, halfbody, and fullbody buttons if necessary
+  function updateButtonStates() {
+    const isStyleActive = sketchBtn.hasClass('active') || cleanBtn.hasClass('active');
+    const buttons = [headshotBtn, halfbodyBtn, fullbodyBtn];
+
+    buttons.each(function() {
+      const btn = $(this);
+      const input = btn.is(headshotBtn) ? headshotInput : btn.is(halfbodyBtn) ? halfbodyInput : fullbodyInput;
+      if (!isStyleActive) {
+        btn.removeClass('active').addClass('greyed-out');
+        input.prop('disabled', true).val(0).removeClass('input-active');
+      } else {
+        btn.removeClass('greyed-out');
+        if (!btn.hasClass('active')) {
+          input.prop('disabled', true).val(0).removeClass('input-active');
+        }
+      }
+    });
+
+    headshotBtn.prop('disabled', !isStyleActive);
+    halfbodyBtn.prop('disabled', !isStyleActive);
+    fullbodyBtn.prop('disabled', !isStyleActive);
   }
-  updateStylePricing();
+
+  // Initially, buttons should be updated based on the current state
   updateButtonStates();
-});
 
-cleanBtn.addEventListener('click', function() {
-  if (this.classList.contains('active')) {
-    this.classList.remove('active');
-  } else {
-    this.classList.add('active');
-    sketchBtn.classList.remove('active');
-  }
-  updateStylePricing();
-  updateButtonStates();
-});
-
-
-function updateStylePricing() {
-  if (sketchBtn.classList.contains('active')) {
-    headshotTotal = 80;
-    halfbodyTotal = 100;
-    fullbodyTotal = 120;
-  } else if (cleanBtn.classList.contains('active')) {
-    headshotTotal = 250;
-    halfbodyTotal = 300;
-    fullbodyTotal = 350;
-  } else {
-    // Default values or reset values, if you want to clear totals when neither is active
-    headshotTotal = halfbodyTotal = fullbodyTotal = 0;
-  }
-  updateTotal();
-}
-
-// Update button states and remove 'active' class from headshot, halfbody, and fullbody buttons if necessary
-function updateButtonStates() {
-  const isStyleActive = sketchBtn.classList.contains('active') || cleanBtn.classList.contains('active');
-  
-  headshotBtn.disabled = !isStyleActive;
-  halfbodyBtn.disabled = !isStyleActive;
-  fullbodyBtn.disabled = !isStyleActive;
-
+  // Adjustments for drawing type buttons
   [headshotBtn, halfbodyBtn, fullbodyBtn].forEach(btn => {
-    if (!isStyleActive) {
-      btn.classList.remove('active');
-      btn.classList.add('greyed-out'); // Ensure you have .greyed-out CSS
-      const input = btn === headshotBtn ? headshotInput : btn === halfbodyBtn ? halfbodyInput : fullbodyInput;
-      input.value = 0; // Reset input value to 0
-      input.classList.remove('input-active'); // Remove 'input-active' class
-    } else {
-      btn.classList.remove('greyed-out');
-    }
+    btn.click(function() {
+      const isStyleActive = sketchBtn.hasClass('active') || cleanBtn.hasClass('active');
+      if (!isStyleActive) {
+        return;
+      }
+      $(this).toggleClass('active');
+      const input = $(this).is(headshotBtn) ? headshotInput : $(this).is(halfbodyBtn) ? halfbodyInput : fullbodyInput;
+      input.prop('disabled', !$(this).hasClass('active')).val($(this).hasClass('active') ? 1 : 0).toggleClass('input-active', $(this).hasClass('active'));
+      updateTotal();
+    });
   });
-}
 
-// Initially, buttons should be updated based on the current state
-updateButtonStates();
+  // Revised updateTotal with logic considering active styles and quantities
+  function updateTotal() {
+    const headshotPrice = sketchBtn.hasClass('active') ? 80 : cleanBtn.hasClass('active') ? 250 : 0;
+    const halfbodyPrice = sketchBtn.hasClass('active') ? 100 : cleanBtn.hasClass('active') ? 300 : 0;
+    const fullbodyPrice = sketchBtn.hasClass('active') ? 120 : cleanBtn.hasClass('active') ? 350 : 0;
 
+    headshotTotal = headshotPrice * parseInt(headshotInput.val());
+    halfbodyTotal = halfbodyPrice * parseInt(halfbodyInput.val());
+    fullbodyTotal = fullbodyPrice * parseInt(fullbodyInput.val());
 
+    const total = headshotTotal + halfbodyTotal + fullbodyTotal;
+    totalDisplay.text(total);
+    totalInput.val(`Total: ${total}`);
+  }
 
+  // Update event listeners for inputs to directly call updateTotal without conditions
+  headshotInput.on('input', updateTotal);
+  halfbodyInput.on('input', updateTotal);
+  fullbodyInput.on('input', updateTotal);
 
-// Adjustments for drawing type buttons
-[headshotBtn, halfbodyBtn, fullbodyBtn].forEach(btn => {
-  btn.addEventListener('click', () => {
-    // Toggle 'active' state for clicked button
-    btn.classList.toggle('active');
-    // Enable/disable corresponding input based on 'active' state of button
-    const input = btn === headshotBtn ? headshotInput : btn === halfbodyBtn ? halfbodyInput : fullbodyInput;
-    input.disabled = !btn.classList.contains('active');
-    input.value = btn.classList.contains('active') ? 1 : 0; // Set input value to 1 if active, otherwise 0
-    
-    // Add or remove 'input-active' class based on 'active' state of button
-    if (btn.classList.contains('active')) {
-      input.classList.add('input-active');
-    } else {
-      input.classList.remove('input-active');
-    }
-    
-    updateTotal(); // Update total whenever a button is clicked
-  });
+  // Call updateTotal initially to set the total based on initial states
+  updateTotal();
 });
-
-
-
-// Revised updateTotal with logic considering active styles and quantities
-function updateTotal() {
-  // Check if either the sketch or clean button is active
-  if (!sketchBtn.classList.contains('active') && !cleanBtn.classList.contains('active')) {
-    totalInput.value = ''; // Clear the total input
-    return; // Exit the function
-  }
-
-  // Calculate totals based on input values and active style
-  const headshotPrice = sketchBtn.classList.contains('active') ? 80 : cleanBtn.classList.contains('active') ? 250 : 0;
-  const halfbodyPrice = sketchBtn.classList.contains('active') ? 100 : cleanBtn.classList.contains('active') ? 300 : 0;
-  const fullbodyPrice = sketchBtn.classList.contains('active') ? 120 : cleanBtn.classList.contains('active') ? 350 : 0;
-  
-  headshotTotal = headshotPrice * parseInt(headshotInput.value);
-  halfbodyTotal = halfbodyPrice * parseInt(halfbodyInput.value);
-  fullbodyTotal = fullbodyPrice * parseInt(fullbodyInput.value);
-
-  const total = headshotTotal + halfbodyTotal + fullbodyTotal;
-  totalDisplay.textContent = total;
-
-  let totalText = "";
-
-  if (sketchBtn.classList.contains('active')) {
-    totalText += `SKETCH\n\n`;
-  }
-
-  if (cleanBtn.classList.contains('active')) {
-    totalText += `CLEAN LINED\n\n`;
-  }
-
-  // Check if headshot, halfbody, and fullbody buttons have the 'active' class before adding their text
-  if (headshotBtn.classList.contains('active')) {
-    totalText += `Headshot (${headshotInput.value}) = ${headshotTotal}\n`;
-  }
-
-  if (halfbodyBtn.classList.contains('active')) {
-    totalText += `Halfbody (${halfbodyInput.value}) = ${halfbodyTotal}\n`;
-  }
-
-  if (fullbodyBtn.classList.contains('active')) {
-    totalText += `Fullbody (${fullbodyInput.value}) = ${fullbodyTotal}\n`;
-  }
-
-  totalText += `Total: ${total}`;
-  totalInput.value = totalText;
-}
-
-// Update event listeners for inputs to directly call updateTotal without conditions
-headshotInput.addEventListener('input', updateTotal);
-halfbodyInput.addEventListener('input', updateTotal);
-fullbodyInput.addEventListener('input', updateTotal);
-
-// Call updateTotal initially to set the total based on initial states
-updateTotal();
-
-</script>  
+</script>
 
 </body>
 </html>

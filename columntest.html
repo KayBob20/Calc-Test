@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto; /* the amount of times auto is types is how many columns you'll get */
+  /* grid-template-columns: 80px 200px auto 40px; <-- this can be used to give exact sizes to each column */
+  /* grid-template-rows: 80px 200px; <-- same with this guy but for rows */
+  background-color: blanchedalmond;
+  padding: 10px;
+  /* column and row gap kinda act like margins, they are the space between each item */
+  column-gap: 10px; 
+  row-gap: 10px;
+  /* justify-content: center; <-- puts the whole grid in center of screen 
+  changing it to start or end with place the grid at start or end */
+  /* align-content: start; <-- starts grid at beginning of container
+  good if you wanna have content after grid stuff */
+}
+
+/* .grid-item {
+  background-color: #ffffffcc;
+  border: 1px solid #000000cc;
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+} */
+
+.grid-container > div {
+  background-color: #ffffffcc;
+  border: 1px solid #000000cc;
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+
+/* if each grid item is getting its own unique name then style div instead ^ */
+
+/* grid lines seem rly good because you can determine the exact size of grid items */
+/* each item will need its own name tho */
+
+.item1 {
+  grid-column: 1 / 3;
+  /* ^ instead of using start and end, you could also do this
+  grid-column: 1 / 5; will start on column 1 and end on 5 */
+  grid-row: 1 / 4; /* determines start and end of a row */
+
+  /* grid-area can be used as a shorthand for all the above ^ */
+  /* grid-area: 1 / 2 / 5 / 6; */
+  /* item 1 will start on row-line 1 and column-line 2, and end on row-line 5 and column line 6 */
+}
+
+  </style>
+
+</head>
+<body>
+
+  <div class="grid-container">
+    <div class="item1">1</div>
+    <div class="grid-item">2</div>
+    <div class="grid-item">3</div>
+    <div class="grid-item">4</div>
+    <div class="grid-item">5</div>
+    <div class="grid-item">6</div>
+    <div class="grid-item">7</div>
+    <div class="grid-item">8</div>
+    <div class="grid-item">9</div>
+  </div>
+
+</body>
+</html>

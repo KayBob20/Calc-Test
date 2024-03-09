@@ -1,108 +1,404 @@
-.main-container {
-    background: #e2e2e2;
-    padding: 20px;
-    display: flex;
+h1 {
+  background: #0cbbaa;
+  width: 100%;
 }
 
-h1 {
-    background: #0cbbaa;
-    width: 100%;
-  }  
-
-.container {
-    display: flex;
-    background-color: #e87b7b;
-    margin: auto;
-    width: 100%;
-  }
-  
-  .one-left-column {
-    flex-grow: 1; /* Grow to fill remaining space */
-    /* display: flex; */
-    flex-direction: column; /* Stack its children vertically */
-    align-items: center; /* Center align the children horizontally */
-  }
-  
-  .final-total {
-    flex-grow: 1; /* Grow to fill remaining space */
-    background-color: antiquewhite;
-    text-align: center; /* Center align the text */
-    flex: 60%; /* the width of the total box */
-  }
-  
-
 .button-container {
-    background: #a4a3a3;
-    display: flex;
-    gap: 10px; /* Controls distance between input box and button */
-    padding: 6px;
+  background: #ef6464;
+  display: flex;
 }
 
 button {
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: 3px solid #ffffff;
-    background-color: #0cbbaa;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    /* transition-duration: 0.2s; Set the default transition duration */
+  padding: 16px 20px;
+  border: 3px solid #ffffff;
+  background-color: #0cbbaa;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+  /* transition-duration: 0.2s; Set the default transition duration */
+}
+
+.greyed-out {
+  border: 3px solid #bbd7d1;
+  background-color: #4d837d;
+  color: #bbd7d1;
+}
+
+#copyButton {
+  width: auto;
 }
 
 button:hover {
-    transform: scale(1.1); /* Scale the button slightly larger on hover */
+  transform: scale(1.1); /* Scale the button slightly larger on hover */
 }
 
 /* Define the animation */
 @keyframes buttonClick {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* Apply the animation to buttons */
 button:active {
-    animation: buttonClick 0.9s ease normal; /* Set animation-fill-mode to forwards */
+  animation: buttonClick 0.9s ease normal; /* Set animation-fill-mode to forwards */
 }
 
 /* This removes the arrow keys from the input boxes: */
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 input {
-    padding: 10px;
-    /* border: 3px solid #0cbbaa; */
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    transition: border-color, background-color 0.3s ease;
-    text-align: center;
-    color: #cfcfcf;
+  padding: 10px;
+  border: none;
+  font-size: 16px;
+  transition: border-color, background-color 0.3s ease;
+  text-align: center;
+  color: #cfcfcf;
+}
+
+.input-container {
+  display: flex;
+  background-color: #ef6464;
+  height: 320px;
+}
+
+#totalInput {
+  color: #000000;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  outline: none;
+  border-radius: 10px;
+  text-align: none;
+  margin: 10px;
+  width: 100%;
+  padding: 10px;
 }
 
 /* This determines what color the input box border is when the user is typing in it */
 
 input:focus {
-    /* border-color: #f2ff65; */
-    background-color: #dafbf7;
-    outline: none;
+  /* border-color: #f2ff65; */
+  background-color: #dafbf7;
+  outline: none;
 }
 
 .input-active {
-    color: black; /* Makes the text black indicating that you can type in it */
+  color: black; /* Makes the text black indicating that you can type in it */
 }
 
 .active {
-    background-color: #ffffff; /* Change this to the color you want */
-    color: #0cbbaa; /* Change this to the color you want */
-    border: 3px solid #0cbbaa;
-    /* transition-duration: 0.2s; */
+  background-color: #ffffff; /* Change this to the color you want */
+  color: #0cbbaa; /* Change this to the color you want */
+  border: 3px solid #0cbbaa;
+  /* transition-duration: 0.2s; */
 }
 
 .active:hover {
-    transform: scale(1.1); /* Scale the button slightly larger on hover */
+  transform: scale(1.1); /* Scale the button slightly larger on hover */
+}
+
+.new-layout {
+  background: #ff444487;
+  padding: 20px;
+  margin-bottom: 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.the-grid {
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  grid-template-rows: auto;
+  width: 100%;
+  gap: 10px;
+}
+
+.twod-art {
+  grid-area: 1 / 1 / 1 / 7;
+  background-color: #0000002f;
+  display: flex;
+}
+
+.twod-art-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  width: 100%;
+  gap: 10px;
+  background-color: #0000002f;
+}
+
+.twod-art-section-one {
+  grid-area: 1 / 1 / 1 / 3;
+  background-color: #2ecabb;
+  text-align: center;
+  display: flex;
+  align-items: center; /* Align text vertically */
+  justify-content: center; /* Align text horizontally */
+}
+
+.twod-art-section-two {
+  grid-area: 2 / 1 / 2 / 3;
+  background-color: #0000002f;
+  display: grid;
+}
+
+.twod-art-section-three {
+  grid-area: 3 / 1 / 3 / 3;
+  background-color: #0000002f;
+  display: grid;
+}
+
+.amount-drawn {
+  grid-area: 2 / 1 / 2 / 7;
+  background-color: #0000002f;
+  display: flex;
+}
+
+.amount-drawn-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  width: 100%;
+  gap: 10px;
+  background-color: #0000002f;
+}
+
+.amount-drawn-section-one {
+  grid-area: 1 / 1 / 1 / 5;
+  background-color: #2ecabb;
+  text-align: center;
+  display: flex;
+  align-items: center; /* Align text vertically */
+  justify-content: center; /* Align text horizontally */
+}
+
+.amount-drawn-section-two {
+  grid-area: 2 / 1 / 2 / 5;
+  background-color: #0000002f;
+  width: 100%;
+}
+
+.amount-drawn-section-three {
+  grid-area: 3 / 1 / 3 / 5;
+  background-color: #0000002f;
+  width: 100%;
+}
+
+.amount-drawn-section-four {
+  grid-area: 4 / 1 / 4 / 5;
+  background-color: #0000002f;
+  width: 100%;
+}
+
+.amount-drawn-section-two .button-container,
+.amount-drawn-section-three .button-container,
+.amount-drawn-section-four .button-container {
+  display: flex;
+  height: 100%; /* Set the height of the button container to fill the parent */
+}
+
+.amount-drawn-section-two input,
+.amount-drawn-section-three input,
+.amount-drawn-section-four input {
+  width: 16%; /* Set the width of inputs to 30% of the row width */
+}
+
+.amount-drawn-section-two button,
+.amount-drawn-section-three button,
+.amount-drawn-section-four button {
+  flex: 1; /* Allow buttons to grow to fill available space */
+  width: 100%; /* Set the width of buttons to fill the available space */
+}
+
+.input-box {
+  grid-area: 1 / 7 / 3 / 16;
+  background-color: #0000002f;
+  display: flex;
+}
+
+.input-box-grid {
+  display: grid;
+  width: 100%;
+  gap: 10px;
+  background-color: #00ff6a;
+}
+
+.input-box-section-one {
+  background-color: #2ecabb;
+  display: flex;
+  justify-content: center; /* Align text horizontally */
+  padding: 16px;
+}
+
+.input-box-section-two {
+  background-color: #cdff50;
+  text-align: center;
+  height: 100%;
+}
+
+.twod-add-ons {
+  grid-area: 3 / 1 / 3 / 16;
+  background-color: #2ecabb;
+  text-align: center;
+  display: flex;
+  align-items: center; /* Align text vertically */
+  justify-content: center; /* Align text horizontally */
+  padding: 16px;
+}
+
+.lineart {
+  grid-area: 4 / 1 / 4 / 6;
+  background-color: #0000002f;
+  display: flex;
+}
+
+.lineart-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  width: 100%;
+  gap: 10px;
+  background-color: #00ff6a;
+}
+
+.lineart-grid-section-one {
+  grid-area: 1 / 1 / 1 / 2;
+  background-color: #2ecabb;
+  text-align: center;
+  display: flex;
+  align-items: center; /* Align text vertically */
+  justify-content: center; /* Align text horizontally */
+}
+
+.lineart-grid-section-two {
+  grid-area: 2 / 1 / 2 / 2;
+  background-color: #0000002f;
+  display: flex;
+}
+
+.lineart-grid-section-three {
+  grid-area: 3 / 1 / 3 / 2;
+  background-color: #0000002f;
+  display: flex;
+}
+
+.shading {
+  grid-area: 4 / 6 / 4 / 11;
+  background-color: #0000002f;
+  display: flex;
+}
+
+.shading-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  width: 100%;
+  gap: 10px;
+  background-color: #00ff6a;
+}
+
+.shading-grid-section-one {
+  background-color: #2ecabb;
+  text-align: center;
+  display: flex;
+  align-items: center; /* Align text vertically */
+  justify-content: center; /* Align text horizontally */
+}
+
+.shading-grid-section-two,
+.shading-grid-section-three,
+.shading-grid-section-four,
+.shading-grid-section-five {
+  display: flex;
+}
+
+.background {
+  grid-area: 4 / 11 / 4 / 16;
+  background-color: #0000002f;
+  display: flex;
+}
+
+.background-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  width: 100%;
+  gap: 10px;
+  background-color: #00ff6a;
+}
+
+.background-grid-section-one {
+  grid-area: 1 / 1 / 1 / 2;
+  background-color: #2ecabb;
+  text-align: center;
+  display: flex;
+  align-items: center; /* Align text vertically */
+  justify-content: center; /* Align text horizontally */
+}
+
+.background-grid-section-two,
+.background-grid-section-three,
+.background-grid-section-four,
+.background-grid-section-five {
+  display: flex;
+}
+
+.other {
+  grid-area: 5 / 1 / 5 / 16;
+  background-color: #2ecabb;
+  text-align: center;
+  display: flex;
+  align-items: center; /* Align text vertically */
+  justify-content: center; /* Align text horizontally */
+  padding: 16px;
+}
+
+.animated {
+  grid-area: 6 / 1 / 6 / 7;
+  background-color: #0000002f;
+  display: flex;
+}
+
+.animated-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  width: 100%;
+  gap: 10px;
+  background-color: #ff6600;
+}
+
+.animated-grid-section-one {
+  grid-area: 1 / 1 / 1 / 2;
+  background-color: #2ecabb;
+  text-align: center;
+  display: flex;
+  align-items: center; /* Align text vertically */
+  justify-content: center; /* Align text horizontally */
+}
+
+.animated-grid-section-one,
+.animated-grid-section-two,
+.animated-grid-section-three,
+.animated-grid-section-four {
+  display: flex;
+}
+
+.writing {
+  grid-area: 6 / 7 / 6 / 16;
+  background-color: #0000002f;
+  display: flex;
 }

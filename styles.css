@@ -16,7 +16,7 @@ button {
   font-size: 16px;
   cursor: pointer;
   width: 100%;
-  /* transition-duration: 0.2s; Set the default transition duration */
+  transition-duration: 0.2s;
 }
 
 .greyed-out {
@@ -26,11 +26,13 @@ button {
 }
 
 #copyButton {
-  width: auto;
+  width: 50%;
+  margin: -10px auto;
 }
 
 button:hover {
-  transform: scale(1.1); /* Scale the button slightly larger on hover */
+  transform: scale(1.04); /* Scale the button slightly larger on hover */
+  transition-duration: 0.2s;
 }
 
 /* Define the animation */
@@ -69,9 +71,9 @@ input {
 }
 
 .input-container {
-  display: flex;
   background-color: #ef6464;
-  height: 320px;
+  flex: 1; /* Grow to fill remaining vertical space */
+  display: flex;
 }
 
 #totalInput {
@@ -84,6 +86,7 @@ input {
   margin: 10px;
   width: 100%;
   padding: 10px;
+  flex: 1; /* Grow to fill remaining vertical space */
 }
 
 /* This determines what color the input box border is when the user is typing in it */
@@ -102,11 +105,11 @@ input:focus {
   background-color: #ffffff; /* Change this to the color you want */
   color: #0cbbaa; /* Change this to the color you want */
   border: 3px solid #0cbbaa;
-  /* transition-duration: 0.2s; */
+  transition-duration: 0.2s;
 }
 
 .active:hover {
-  transform: scale(1.1); /* Scale the button slightly larger on hover */
+  transform: scale(1.04); /* Scale the button slightly larger on hover */
 }
 
 .new-layout {
@@ -117,6 +120,7 @@ input:focus {
   margin: auto;
 }
 
+/* Define the grid layout for large screens */
 .the-grid {
   display: grid;
   grid-template-columns: repeat(15, 1fr);
@@ -234,19 +238,25 @@ input:focus {
   width: 100%;
   gap: 10px;
   background-color: #00ff6a;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 14% repeat(1, 1fr);
 }
 
 .input-box-section-one {
   background-color: #2ecabb;
+  text-align: center;
   display: flex;
+  align-items: center; /* Align text vertically */
   justify-content: center; /* Align text horizontally */
-  padding: 16px;
+  grid-area: 1 / 1 / 1 / 3;
 }
 
 .input-box-section-two {
   background-color: #cdff50;
   text-align: center;
-  height: 100%;
+  grid-area: 2 / 1 / 4 / 3;
+  display: flex;
+  flex-direction: column; /* Arrange children vertically */
 }
 
 .twod-add-ons {

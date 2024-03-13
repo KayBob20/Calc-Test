@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            --white: #ffffff;
+            --light-green: #C7FFEC;
+            --green: #00D2AA;
+            --main-blue: #00ABC3;
+            --dark-blue: #04748C;
+            --darkest-blue: #012746;
+            --transition-duration: 0.5s;
+            --border-radius: 10px;
+            --font-size: 1rem;
+        }
+
+    * {box-sizing: border-box;}
+    
+        .main-grid-container {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr); /* Adjust the number of columns and fixed widths as needed */
+            grid-template-rows: auto; /* This makes row heights adjust based on their content */
+            gap: 10px;
+            background-color: bisque;
+            padding: 10px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .main-grid-container > * {
+            background-color: var(--main-blue); /* Background color for grid items */
+            /* padding: 6px; change this for the individual buttons */
+            border-radius: var(--border-radius);
+            color: var(--darkest-blue);
+        }
+
+        /* CSS Media Query for screens less than or equal to 768px */
+        @media (max-width: 768px) {
+            .main-grid-container {
+                display: grid;
+                grid-template-columns: repeat(1, 1fr); /* Adjust the number of columns and fixed widths as needed */
+                grid-template-rows: auto; /* This makes row heights adjust based on their content */
+                gap: 10px;
+                background-color: bisque;
+                padding: 10px;
+            }
+
+            .art-type { grid-column: 1; grid-row: 1; }
+            .sketch { grid-column: 1; grid-row: 2; }
+            .clean-lined { grid-column: 1; grid-row: 3; }
+            .threed-art { grid-column: 1; grid-row: 4; }
+
+            .amount-drawn { grid-column: 1; grid-row: 5; }
+            .headshot { grid-column: 1; grid-row: 6; }
+            .halfbody { grid-column: 1; grid-row: 7; }
+            .fullbody { grid-column: 1; grid-row: 8; }
+
+            .twod-add-ons { grid-column: 1; grid-row: 9; }
+
+            .lineart { grid-column: 1; grid-row: 10; }
+            .colored-lines { grid-column: 1; grid-row: 11; }
+            .lineless { grid-column: 1; grid-row: 12; }
+
+            .shading { grid-column: 1; grid-row: 13; }
+            .minimal { grid-column: 1; grid-row: 14; }
+            .basic { grid-column: 1; grid-row: 15; }
+            .complex { grid-column: 1; grid-row: 16; }
+            .painterly { grid-column: 1; grid-row: 17; }
+
+            .background { grid-column: 1; grid-row: 18; }
+            .abstract { grid-column: 1; grid-row: 19; }
+            .basic-bg { grid-column: 1; grid-row: 20; }
+            .depth { grid-column: 1; grid-row: 21; }
+            .complex-bg { grid-column: 1; grid-row: 22; }
+
+            .other { grid-column: 1; grid-row: 23; }
+
+            .animated { grid-column: 1; grid-row: 24; }
+            .easy { grid-column: 1; grid-row: 25; }
+            .simple { grid-column: 1; grid-row: 26; }
+            .complex-anim { grid-column: 1; grid-row: 27; }
+
+            .writing { grid-column: 1; grid-row: 28; }
+            .writing-info { grid-column: 1; grid-row: 29; }
+
+            .total-title { grid-column: 1; grid-row: 30; }
+            .total-input-display { grid-column: 1; grid-row: 31; }
+        }
+
+        /* Additional Media Query for very small screens, like smartphones */
+        /* @media (max-width: 480px) {
+            .main-grid-container {
+            }
+        }  */
+
+        /* For screens larger than 768px */
+        @media (min-width: 769px) {
+            .art-type { grid-column: 1 / 5; grid-row: 1; }
+            .sketch { grid-column: 1 / 5; grid-row: 2; }
+            .clean-lined { grid-column: 1 / 5; grid-row: 3; }
+            .threed-art { grid-column: 1 / 5; grid-row: 4; }
+
+            .total-title { grid-column: 5 / 13; grid-row: 1; }
+            .total-input-display { grid-column: 5 / 13; grid-row: 2 / 9; }
+
+            .amount-drawn { grid-column: 1 / 5; grid-row: 5; }
+            .headshot { grid-column: 1 / 5; grid-row: 6; }
+            .halfbody { grid-column: 1 / 5; grid-row: 7; }
+            .fullbody { grid-column: 1 / 5; grid-row: 8; }
+            
+            .twod-add-ons { grid-column: 1 / 13; grid-row: 9; }
+
+            .lineart { grid-column: 1 / 5; grid-row: 10; }
+            .colored-lines { grid-column: 1 / 5; grid-row: 11; }
+            .lineless { grid-column: 1 / 5; grid-row: 12; }
+            
+            .shading { grid-column: 5 / 9; grid-row: 10; }
+            .minimal { grid-column: 5 / 9; grid-row: 11; }
+            .basic { grid-column: 5 / 9; grid-row: 12; }
+            .complex { grid-column: 5 / 9; grid-row: 13; }
+            .painterly { grid-column: 5 / 9; grid-row: 14; }
+
+            .background { grid-column: 9 / 13; grid-row: 10; }
+            .abstract { grid-column: 9 / 13; grid-row: 11; }
+            .basic-bg { grid-column: 9 / 13; grid-row: 12; }
+            .depth { grid-column: 9 / 13; grid-row: 13; }
+            .complex-bg { grid-column: 9 / 13; grid-row: 14; }
+            
+            .other { grid-column: 1 / 13; grid-row: 15; }
+            
+            .animated { grid-column: 1 / 6; grid-row: 16; }
+            .easy { grid-column: 1 / 6; grid-row: 17; }
+            .simple { grid-column: 1 / 6; grid-row: 18; }
+            .complex-anim { grid-column: 1 / 6; grid-row: 19; }
+            
+            .writing { grid-column: 6 / 13; grid-row: 16; }
+            .writing-info { grid-column: 6 / 13; grid-row: 17 / 20; }
+        }
+        
+        button {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            border: none;
+            padding: 20px;
+            font-size: var(--font-size);
+            color: var(--dark-blue);
+            transition-duration: 0.2s;            
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: var(--light-green);
+            transition-duration: 0.2s;
+            transform: scale(1.05);
+            color: var(--darkest-blue);
+            }
+
+            /* Define the animation */
+            @keyframes buttonClick {
+            0% {
+                transform: scale(1.04)
+            }
+            50% {
+                box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.5); /* Adjusted drop shadow */
+                transform: scale(1.08)
+            }
+            100% {
+                transform: scale(1.04)
+            }
+        }
+
+            /* Apply the animation to buttons */
+            button:active {
+            animation: buttonClick 0.2s ease normal; /* Set animation-fill-mode to forwards */
+            }
+
+            .greyed-out:active {
+            animation: none;
+            }
+
+        .active {
+            background-color: var(--green); /* Change this to the color you want */
+            color: var(--white); /* Change this to the color you want */
+            transition-duration: 0.2s;
+            }
+
+        .active:hover {
+            transform: scale(1.04); /* Scale the button slightly larger on hover */
+            }
+
+        .greyed-out {
+            background-color: #CBCBCB;
+            color: #8D9AA2;
+            }
+
+            .greyed-out:hover {
+  background-color: #CBCBCB; /* Optionally, you can specify the same background color as when the button is greyed out */
+  color: #8D9AA2; /* Optionally, you can specify the same text color as when the button is greyed out */
+  transform: scale(1); /* Scale the button slightly larger on hover */
+}
+
+    /* makes buttons fill their containers */
+        .headshot, .halfbody, .fullbody, .sketch, .clean-lined, .threed-art, .colored-lines, .lineless, .minimal, .basic, .complex, .painterly, .abstract, .basic-bg, .depth, .complex-bg {
+            display: flex; /* Use flexbox layout */
+        }
+    /* makes buttons fill 100% of their containers */
+        #sketchBtn, #cleanBtn, #threedBtn, #coloredBtn, #linelessBtn, #minimalBtn, #basicBtn, #complexBtn, #painterlyBtn, #abstractBtn, #basicbackgroundBtn, #depthBtn, #complexbackgroundBtn {
+            flex: 100%;
+        }
+
+        #headshotBtn, #halfbodyBtn, #fullbodyBtn {
+            flex: 70%; /* Button takes up 70% of the space */
+            border-radius: var(--border-radius) 0px 0px var(--border-radius);
+        }
+
+        #headshotInput, #halfbodyInput, #fullbodyInput {
+            flex: 30%; /* Input takes up the remaining 30% */
+            border-radius: 0px var(--border-radius) var(--border-radius) 0px;
+            box-shadow: -3px 0px var(--main-blue);
+        }
+    /* for all the titles */
+        .art-type, .amount-drawn, .total-title, .twod-add-ons, .lineart, .shading, .background, .other, .animated, .writing { 
+            display: flex; align-items: center; justify-content: center; text-align: center;}
+
+        .total-input-display {text-align: center; padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;}
+
+        #totalInput {
+            width: 100%; 
+            height: 100%;
+            box-sizing: border-box; 
+            border-radius: var(--border-radius);
+            border: none;
+            color: var(--darkest-blue);
+            font-size: 1rem;
+            outline: none;
+            padding: 10px;
+            resize: none;}
+
+        .input-container {flex-grow: 1; background-color: rgb(255, 43, 43);}
+
+        #copyButton {align-self: center;} /* makes button not be affected my the flex properties of its container */
+
+        /* This removes the arrow keys from the input boxes: */
+
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+
+        input {
+        padding: 10px;
+        border: none;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
+        text-align: center;
+        color: #cfcfcf;
+        outline: none;
+        }
+
+        input:focus {
+        background-color: var(--light-green);
+        }
+
+        .input-active {
+        color: var(--darkest-blue); /* Makes the text black indicating that you can type in it */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main-grid-container">
+        <!-- -----------------------
+     2D Art Section
+    ----------------------- -->
+        <div class="art-type">
+            <h2>Art Type</h2>
+        </div>
+        <!-- -----------------------
+     2D Art Section - Items
+    ----------------------- -->
+        <div class="sketch">
+            <button id="sketchBtn">Sketch</button>
+        </div>
+        <div class="clean-lined">
+            <button id="cleanBtn">Clean Lined</button>
+        </div>
+        <div class="threed-art">
+            <button id="threedBtn">3D</button>
+        </div>
+        <!-- -----------------------
+     Amount Drawn Section
+    ----------------------- -->
+        <div class="amount-drawn">
+            <h2>Amount Drawn</h2>
+        </div>
+        <!-- -----------------------
+     Amount Drawn Section - Items
+    ----------------------- -->
+        <div class="headshot">
+            <button id="headshotBtn">Headshot</button>
+            <input type="number" id="headshotInput" min="1" max="99" value="0">
+        </div>
+        <div class="halfbody">
+            <button id="halfbodyBtn">Halfbody</button>
+            <input type="number" id="halfbodyInput" min="1" max="99" value="0">
+        </div>
+        <div class="fullbody">
+            <button id="fullbodyBtn">Fullbody</button>
+            <input type="number" id="fullbodyInput" min="1" max="99" value="0">
+        </div>
+        <!-- -----------------------
+     Total
+    ----------------------- -->
+        <div class="total-title">
+            <h1>Total</h1>
+        </div>
+        <div class="total-input-display">
+             Total: <span id="total">0</span>
+          <br>
+          <button id="copyButton">Copy</button>
+          <br>
+          <div class="input-container">
+            <textarea id="totalInput"></textarea>
+          </div>
+        </div>
+        <!-- -----------------------
+     2D Add-ons
+    ----------------------- -->
+        <div class="twod-add-ons">
+            <h2>2D Add-ons</h2>
+        </div>
+        <!-- -----------------------
+     Lineart Add-ons Section
+    ----------------------- -->
+        <div class="lineart">
+            <h2>Lineart</h2>
+        </div>
+        <!-- -----------------------
+     Lineart Add-ons Section - Items
+    ----------------------- -->
+        <div class="colored-lines">
+            <button id="coloredBtn">Colored Lines</button>
+        </div>
+        <div class="lineless">
+            <button id="linelessBtn">Lineless</button>
+        </div>
+        <!-- -----------------------
+     Shading Section
+    ----------------------- -->
+        <div class="shading">
+            <h2>Shading</h2>
+        </div>
+        <!-- -----------------------
+     Shading Section - Items
+    ----------------------- -->
+        <div class="minimal">
+            <button id="minimalBtn">Minimal</button>
+        </div>
+        <div class="basic">
+            <button id="basicBtn">Basic</button>
+        </div>
+        <div class="complex">
+            <button id="complexBtn">Complex</button>
+        </div>
+        <div class="painterly">
+            <button id="painterlyBtn">Painterly</button>
+        </div>
+        <!-- -----------------------
+     Background Section
+    ----------------------- -->
+        <div class="background">
+            <h2>Background</h2>
+        </div>
+        <!-- -----------------------
+     Background Section - Items
+    ----------------------- -->
+        <div class="abstract">
+            <button id="abstractBtn">Abstract</button>
+        </div>
+        <div class="basic-bg">
+            <button id="basicbackgroundBtn">Basic</button>
+        </div>
+        <div class="depth">
+          <button id="depthBtn">Depth</button>
+        </div>
+        <div class="complex-bg">
+            <button id="complexbackgroundBtn">Complex</button>
+        </div>
+        <!-- -----------------------
+     Other
+    ----------------------- -->
+        <div class="other">
+            <h2>Other</h2>
+        </div>
+        <!-- -----------------------
+     Animated Section
+    ----------------------- -->
+        <div class="animated">
+            <h2>Animated</h2>
+        </div>
+        <!-- -----------------------
+     Animated Section - Items
+    ----------------------- -->
+        <div class="easy">27</div>
+        <div class="simple">28</div>
+        <div class="complex-anim">29</div>
+        <!-- -----------------------
+     Writing Section
+    ----------------------- -->
+        <div class="writing">
+            <h2>Writing</h2>
+        </div>
+        <div class="writing-info">31</div>
+    </div>
+        <!-- -----------------------
+     JavaScript
+    ----------------------- -->
+    <script src="scripts.js"></script>
+</body>
+</html>

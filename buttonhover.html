@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+  background-color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.btn {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+  color: #fff;
+  font-size: 24px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-family: sans-serif;
+  background: #ff9a9a;
+  border-radius: 30px;
+  transition: 1s;
+  transition-duration: 0.3s;
+}
+ 
+.btn:hover {
+  animation: animate 3s linear infinite;
+  transition: 1s;
+  background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+  background-color: #ff9a9a;
+  background-size: 400%;
+  transition-duration: 0.3s;
+  transform: scale(1.05);
+}
+ 
+@keyframes animate {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: -400%;
+  }
+}
+    </style>
+</head>
+<body>
+    <a href="#" class="btn">Button</a>
+</body>
+</html>

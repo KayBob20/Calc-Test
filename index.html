@@ -3,458 +3,425 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Button Total</title>
-<link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+    <style>
+        :root {
+            --white: #ffffff;
+            --light-green: #C7FFEC;
+            --green: #00D2AA;
+            --main-blue: #00ABC3;
+            --dark-blue: #04748C;
+            --darkest-blue: #012746;
+            --transition-duration: 0.5s;
+            --border-radius: 10px;
+            --font-size: 1rem;
+        }
+
+    * {box-sizing: border-box;}
+    
+        .main-grid-container {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr); /* Adjust the number of columns and fixed widths as needed */
+            grid-template-rows: auto; /* This makes row heights adjust based on their content */
+            gap: 10px;
+            background-color: bisque;
+            padding: 10px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .main-grid-container > * {
+            background-color: var(--main-blue); /* Background color for grid items */
+            /* padding: 6px; change this for the individual buttons */
+            border-radius: var(--border-radius);
+            color: var(--darkest-blue);
+        }
+
+        /* CSS Media Query for screens less than or equal to 768px */
+        @media (max-width: 768px) {
+            .main-grid-container {
+                display: grid;
+                grid-template-columns: repeat(1, 1fr); /* Adjust the number of columns and fixed widths as needed */
+                grid-template-rows: auto; /* This makes row heights adjust based on their content */
+                gap: 10px;
+                background-color: bisque;
+                padding: 10px;
+            }
+
+            .art-type { grid-column: 1; grid-row: 1; }
+            .sketch { grid-column: 1; grid-row: 2; }
+            .clean-lined { grid-column: 1; grid-row: 3; }
+            .threed-art { grid-column: 1; grid-row: 4; }
+
+            .amount-drawn { grid-column: 1; grid-row: 5; }
+            .headshot { grid-column: 1; grid-row: 6; }
+            .halfbody { grid-column: 1; grid-row: 7; }
+            .fullbody { grid-column: 1; grid-row: 8; }
+
+            .twod-add-ons { grid-column: 1; grid-row: 9; }
+
+            .lineart { grid-column: 1; grid-row: 10; }
+            .colored-lines { grid-column: 1; grid-row: 11; }
+            .lineless { grid-column: 1; grid-row: 12; }
+
+            .shading { grid-column: 1; grid-row: 13; }
+            .minimal { grid-column: 1; grid-row: 14; }
+            .basic { grid-column: 1; grid-row: 15; }
+            .complex { grid-column: 1; grid-row: 16; }
+            .painterly { grid-column: 1; grid-row: 17; }
+
+            .background { grid-column: 1; grid-row: 18; }
+            .abstract { grid-column: 1; grid-row: 19; }
+            .basic-bg { grid-column: 1; grid-row: 20; }
+            .depth { grid-column: 1; grid-row: 21; }
+            .complex-bg { grid-column: 1; grid-row: 22; }
+
+            .other { grid-column: 1; grid-row: 23; }
+
+            .animated { grid-column: 1; grid-row: 24; }
+            .easy { grid-column: 1; grid-row: 25; }
+            .simple { grid-column: 1; grid-row: 26; }
+            .complex-anim { grid-column: 1; grid-row: 27; }
+
+            .writing { grid-column: 1; grid-row: 28; }
+            .writing-info { grid-column: 1; grid-row: 29; }
+
+            .total-title { grid-column: 1; grid-row: 30; }
+            .total-input-display { grid-column: 1; grid-row: 31; }
+        }
+
+        /* Additional Media Query for very small screens, like smartphones */
+        /* @media (max-width: 480px) {
+            .main-grid-container {
+            }
+        }  */
+
+        /* For screens larger than 768px */
+        @media (min-width: 769px) {
+            .art-type { grid-column: 1 / 5; grid-row: 1; }
+            .sketch { grid-column: 1 / 5; grid-row: 2; }
+            .clean-lined { grid-column: 1 / 5; grid-row: 3; }
+            .threed-art { grid-column: 1 / 5; grid-row: 4; }
+
+            .total-title { grid-column: 5 / 13; grid-row: 1; }
+            .total-input-display { grid-column: 5 / 13; grid-row: 2 / 9; }
+
+            .amount-drawn { grid-column: 1 / 5; grid-row: 5; }
+            .headshot { grid-column: 1 / 5; grid-row: 6; }
+            .halfbody { grid-column: 1 / 5; grid-row: 7; }
+            .fullbody { grid-column: 1 / 5; grid-row: 8; }
+            
+            .twod-add-ons { grid-column: 1 / 13; grid-row: 9; }
+
+            .lineart { grid-column: 1 / 5; grid-row: 10; }
+            .colored-lines { grid-column: 1 / 5; grid-row: 11; }
+            .lineless { grid-column: 1 / 5; grid-row: 12; }
+            
+            .shading { grid-column: 5 / 9; grid-row: 10; }
+            .minimal { grid-column: 5 / 9; grid-row: 11; }
+            .basic { grid-column: 5 / 9; grid-row: 12; }
+            .complex { grid-column: 5 / 9; grid-row: 13; }
+            .painterly { grid-column: 5 / 9; grid-row: 14; }
+
+            .background { grid-column: 9 / 13; grid-row: 10; }
+            .abstract { grid-column: 9 / 13; grid-row: 11; }
+            .basic-bg { grid-column: 9 / 13; grid-row: 12; }
+            .depth { grid-column: 9 / 13; grid-row: 13; }
+            .complex-bg { grid-column: 9 / 13; grid-row: 14; }
+            
+            .other { grid-column: 1 / 13; grid-row: 15; }
+            
+            .animated { grid-column: 1 / 6; grid-row: 16; }
+            .easy { grid-column: 1 / 6; grid-row: 17; }
+            .simple { grid-column: 1 / 6; grid-row: 18; }
+            .complex-anim { grid-column: 1 / 6; grid-row: 19; }
+            
+            .writing { grid-column: 6 / 13; grid-row: 16; }
+            .writing-info { grid-column: 6 / 13; grid-row: 17 / 20; }
+        }
+        
+        button {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            border: none;
+            padding: 20px;
+            font-size: var(--font-size);
+            color: var(--dark-blue);
+            transition-duration: 0.2s;            
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: var(--light-green);
+            transition-duration: 0.2s;
+            transform: scale(1.05);
+            color: var(--darkest-blue);
+            }
+
+            /* Define the animation */
+            @keyframes buttonClick {
+            0% {
+                transform: scale(1.04)
+            }
+            50% {
+                box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.5); /* Adjusted drop shadow */
+                transform: scale(1.08)
+            }
+            100% {
+                transform: scale(1.04)
+            }
+        }
+
+            /* Apply the animation to buttons */
+            button:active {
+            animation: buttonClick 0.2s ease normal; /* Set animation-fill-mode to forwards */
+            }
+
+            .greyed-out:active {
+            animation: none;
+            }
+
+        .active {
+            background-color: var(--green); /* Change this to the color you want */
+            color: var(--white); /* Change this to the color you want */
+            transition-duration: 0.2s;
+            }
+
+        .active:hover {
+            transform: scale(1.04); /* Scale the button slightly larger on hover */
+            }
+
+        .greyed-out {
+            background-color: #CBCBCB;
+            color: #8D9AA2;
+            }
+
+            .greyed-out:hover {
+  background-color: #CBCBCB; /* Optionally, you can specify the same background color as when the button is greyed out */
+  color: #8D9AA2; /* Optionally, you can specify the same text color as when the button is greyed out */
+  transform: scale(1); /* Scale the button slightly larger on hover */
+}
+
+    /* makes buttons fill their containers */
+        .headshot, .halfbody, .fullbody, .sketch, .clean-lined, .threed-art, .colored-lines, .lineless, .minimal, .basic, .complex, .painterly, .abstract, .basic-bg, .depth, .complex-bg {
+            display: flex; /* Use flexbox layout */
+        }
+    /* makes buttons fill 100% of their containers */
+        #sketchBtn, #cleanBtn, #threedBtn, #coloredBtn, #linelessBtn, #minimalBtn, #basicBtn, #complexBtn, #painterlyBtn, #abstractBtn, #basicbackgroundBtn, #depthBtn, #complexbackgroundBtn {
+            flex: 100%;
+        }
+
+        #headshotBtn, #halfbodyBtn, #fullbodyBtn {
+            flex: 70%; /* Button takes up 70% of the space */
+            border-radius: var(--border-radius) 0px 0px var(--border-radius);
+        }
+
+        #headshotInput, #halfbodyInput, #fullbodyInput {
+            flex: 30%; /* Input takes up the remaining 30% */
+            border-radius: 0px var(--border-radius) var(--border-radius) 0px;
+            box-shadow: -3px 0px var(--main-blue);
+        }
+    /* for all the titles */
+        .art-type, .amount-drawn, .total-title, .twod-add-ons, .lineart, .shading, .background, .other, .animated, .writing { 
+            display: flex; align-items: center; justify-content: center; text-align: center;}
+
+        .total-input-display {text-align: center; padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;}
+
+        #totalInput {
+            width: 100%; 
+            height: 100%;
+            box-sizing: border-box; 
+            border-radius: var(--border-radius);
+            border: none;
+            color: var(--darkest-blue);
+            font-size: 1rem;
+            outline: none;
+            padding: 10px;
+            resize: none;}
+
+        .input-container {flex-grow: 1; background-color: rgb(255, 43, 43);}
+
+        #copyButton {align-self: center;} /* makes button not be affected my the flex properties of its container */
+
+        /* This removes the arrow keys from the input boxes: */
+
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+
+        input {
+        padding: 10px;
+        border: none;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
+        text-align: center;
+        color: #cfcfcf;
+        outline: none;
+        }
+
+        input:focus {
+        background-color: var(--light-green);
+        }
+
+        .input-active {
+        color: var(--darkest-blue); /* Makes the text black indicating that you can type in it */
+        }
+
+    </style>
 </head>
 <body>
-
-<div class="new-layout">
-
-  <div class="the-grid">
- <!--  -----------------------
-   2D art section
- ----------------------- -->
-    <div class="twod-art">
-      <div class="twod-art-grid">
-        <!-- -------- -->
-        <div class="twod-art-section-one">2D Art</div>
-        <div class="twod-art-section-two">
-          <div class="button-container">
+    <div class="main-grid-container">
+        <!-- -----------------------
+     2D Art Section
+    ----------------------- -->
+        <div class="art-type">
+            <h2>Art Type</h2>
+        </div>
+        <!-- -----------------------
+     2D Art Section - Items
+    ----------------------- -->
+        <div class="sketch">
             <button id="sketchBtn">Sketch</button>
-          </div>
         </div>
-        <div class="twod-art-section-three">
-          <div class="button-container">
+        <div class="clean-lined">
             <button id="cleanBtn">Clean Lined</button>
-          </div>
         </div>
-        <!-- -------- -->
-    </div>
-  </div>
-  <!--  -----------------------
-   Amount drawn section
- ----------------------- -->
-    <div class="amount-drawn">
-      <div class="amount-drawn-grid">
-        <!-- -------- -->
-        <div class="amount-drawn-section-one">Amount Drawn</div>
-        <div class="amount-drawn-section-two">
-          <div class="button-container">
+        <div class="threed-art">
+            <button id="threedBtn">3D</button>
+        </div>
+        <!-- -----------------------
+     Amount Drawn Section
+    ----------------------- -->
+        <div class="amount-drawn">
+            <h2>Amount Drawn</h2>
+        </div>
+        <!-- -----------------------
+     Amount Drawn Section - Items
+    ----------------------- -->
+        <div class="headshot">
             <button id="headshotBtn">Headshot</button>
             <input type="number" id="headshotInput" min="1" max="99" value="0">
-          </div>
         </div>
-        <div class="amount-drawn-section-three">
-          <div class="button-container">
+        <div class="halfbody">
             <button id="halfbodyBtn">Halfbody</button>
             <input type="number" id="halfbodyInput" min="1" max="99" value="0">
-          </div>
         </div>
-        <div class="amount-drawn-section-four">
-          <div class="button-container">
+        <div class="fullbody">
             <button id="fullbodyBtn">Fullbody</button>
             <input type="number" id="fullbodyInput" min="1" max="99" value="0">
-          </div>
         </div>
-        <!-- -------- -->
-      </div>
-    </div>
- <!--  -----------------------
-   Total section
- ----------------------- -->
-    <div class="input-box">
-      <div class="input-box-grid">
-        <!-- -------- -->
-        <div class="input-box-section-one">Total</div>
-        <div class="input-box-section-two">
-
-          Total: <span id="total">0</span>
+        <!-- -----------------------
+     Total
+    ----------------------- -->
+        <div class="total-title">
+            <h1>Total</h1>
+        </div>
+        <div class="total-input-display">
+             Total: <span id="total">0</span>
           <br>
           <button id="copyButton">Copy</button>
           <br>
           <div class="input-container">
             <textarea id="totalInput"></textarea>
           </div>
-
         </div>
-        <!-- -------- -->
-      </div>
-    </div>
-     <!--  -----------------------
-   2D Add-ons section
- ----------------------- -->
-    <div class="twod-add-ons">2D Add-ons</div>
-      <!-- -------- -->
+        <!-- -----------------------
+     2D Add-ons
+    ----------------------- -->
+        <div class="twod-add-ons">
+            <h2>2D Add-ons</h2>
+        </div>
+        <!-- -----------------------
+     Lineart Add-ons Section
+    ----------------------- -->
         <div class="lineart">
-        <div class="lineart-grid">
-          <div class="lineart-grid-section-one">Lineart</div>
-          <div class="lineart-grid-section-two">
+            <h2>Lineart</h2>
+        </div>
+        <!-- -----------------------
+     Lineart Add-ons Section - Items
+    ----------------------- -->
+        <div class="colored-lines">
             <button id="coloredBtn">Colored Lines</button>
-          </div>
-          <div class="lineart-grid-section-three">
+        </div>
+        <div class="lineless">
             <button id="linelessBtn">Lineless</button>
-          </div>
         </div>
-        </div>
-        <!-- -------- -->
+        <!-- -----------------------
+     Shading Section
+    ----------------------- -->
         <div class="shading">
-        <div class="shading-grid">
-          <div class="shading-grid-section-one">Shading</div>
-          <div class="shading-grid-section-two">
+            <h2>Shading</h2>
+        </div>
+        <!-- -----------------------
+     Shading Section - Items
+    ----------------------- -->
+        <div class="minimal">
             <button id="minimalBtn">Minimal</button>
-          </div>
-          <div class="shading-grid-section-three">
+        </div>
+        <div class="basic">
             <button id="basicBtn">Basic</button>
-          </div>
-          <div class="shading-grid-section-four">
+        </div>
+        <div class="complex">
             <button id="complexBtn">Complex</button>
-          </div>
-          <div class="shading-grid-section-five">
+        </div>
+        <div class="painterly">
             <button id="painterlyBtn">Painterly</button>
-          </div>
         </div>
-      </div>
-      <!-- -------- -->
-    <div class="background">
-      <div class="background-grid">
-        <div class="background-grid-section-one">Background</div>
-        <div class="background-grid-section-two">
-          <button id="abstractBtn">Abstract</button>
+        <!-- -----------------------
+     Background Section
+    ----------------------- -->
+        <div class="background">
+            <h2>Background</h2>
         </div>
-        <div class="background-grid-section-three">
-          <button id="basicbackgroundBtn">Basic</button>
+        <!-- -----------------------
+     Background Section - Items
+    ----------------------- -->
+        <div class="abstract">
+            <button id="abstractBtn">Abstract</button>
         </div>
-        <div class="background-grid-section-four">
+        <div class="basic-bg">
+            <button id="basicbackgroundBtn">Basic</button>
+        </div>
+        <div class="depth">
           <button id="depthBtn">Depth</button>
         </div>
-        <div class="background-grid-section-five">
-          <button id="complexbackgroundBtn">Complex</button>
+        <div class="complex-bg">
+            <button id="complexbackgroundBtn">Complex</button>
         </div>
-      </div>
+        <!-- -----------------------
+     Other
+    ----------------------- -->
+        <div class="other">
+            <h2>Other</h2>
+        </div>
+        <!-- -----------------------
+     Animated Section
+    ----------------------- -->
+        <div class="animated">
+            <h2>Animated</h2>
+        </div>
+        <!-- -----------------------
+     Animated Section - Items
+    ----------------------- -->
+        <div class="easy">27</div>
+        <div class="simple">28</div>
+        <div class="complex-anim">29</div>
+        <!-- -----------------------
+     Writing Section
+    ----------------------- -->
+        <div class="writing">
+            <h2>Writing</h2>
+        </div>
+        <div class="writing-info">31</div>
     </div>
-    <!-- -------- -->
-     <!--  -----------------------
-   Other categories section
- ----------------------- -->
-    <div class="other">other</div>
-    <div class="animated">
-      <div class="animated-grid">
-        <div class="animated-grid-section-one">Animated</div>
-        <div class="animated-grid-section-two">
-          <button id="easyBtn">Easy</button>
-        </div>
-        <div class="animated-grid-section-three">
-          <button id="simpleBtn">Simple</button>
-        </div>
-        <div class="animated-grid-section-four">
-          <button id="complemanimBtn">Complex</button>
-        </div>
-      </div>
-
-    </div>
-    <div class="writing">writing</div>
-
-  </div>
-
-</div>
-
-<script>
-const headshotBtn = document.getElementById('headshotBtn');
-const halfbodyBtn = document.getElementById('halfbodyBtn');
-const fullbodyBtn = document.getElementById('fullbodyBtn');
-const headshotInput = document.getElementById('headshotInput');
-const halfbodyInput = document.getElementById('halfbodyInput');
-const fullbodyInput = document.getElementById('fullbodyInput');
-const totalDisplay = document.getElementById('total');
-const sketchBtn = document.getElementById('sketchBtn');
-const cleanBtn = document.getElementById('cleanBtn');
-const totalInput = document.getElementById('totalInput'); // Define totalInput
-const coloredBtn = document.querySelector('#coloredBtn');
-const linelessBtn = document.querySelector('#linelessBtn');
-const minimalBtn = document.querySelector('#minimalBtn');
-const basicBtn = document.querySelector('#basicBtn');
-const complexBtn = document.querySelector('#complexBtn');
-const painterlyBtn = document.querySelector('#painterlyBtn');
-const abstractBtn = document.querySelector('#abstractBtn');
-const basicbackgroundBtn = document.querySelector('#basicbackgroundBtn');
-const depthBtn = document.querySelector('#depthBtn');
-const complexbackgroundBtn = document.querySelector('#complexbackgroundBtn');
-
-
-let headshotTotal = 0;
-let halfbodyTotal = 0;
-let fullbodyTotal = 0;
-
-// Existing code for button click handling and total updating...
-
-// Add logic for sketchBtn and cleanBtn
-sketchBtn.addEventListener('click', function() {
-  if (this.classList.contains('active')) {
-    this.classList.remove('active');
-  } else {
-    this.classList.add('active');
-    cleanBtn.classList.remove('active');
-  }
-  updateStylePricing();
-  updateButtonStates();
-});
-
-cleanBtn.addEventListener('click', function() {
-  if (this.classList.contains('active')) {
-    this.classList.remove('active');
-  } else {
-    this.classList.add('active');
-    sketchBtn.classList.remove('active');
-  }
-  updateStylePricing();
-  updateButtonStates();
-});
-
-
-function updateStylePricing() {
-  if (sketchBtn.classList.contains('active')) {
-    headshotTotal = 80;
-    halfbodyTotal = 100;
-    fullbodyTotal = 120;
-  } else if (cleanBtn.classList.contains('active')) {
-    headshotTotal = 250;
-    halfbodyTotal = 300;
-    fullbodyTotal = 350;
-  } else {
-    // Default values or reset values, if you want to clear totals when neither is active
-    headshotTotal = halfbodyTotal = fullbodyTotal = 0;
-  }
-  updateTotal();
-}
-
-// Update button states and remove 'active' class from headshot, halfbody, and fullbody buttons if necessary
-function updateButtonStates() {
-  const isStyleActive = sketchBtn.classList.contains('active') || cleanBtn.classList.contains('active');
-  
-  headshotBtn.disabled = !isStyleActive;
-  halfbodyBtn.disabled = !isStyleActive;
-  fullbodyBtn.disabled = !isStyleActive;
-  coloredBtn.disabled = !isStyleActive; // Ensure coloredBtn is disabled/enabled
-  linelessBtn.disabled = !isStyleActive;
-  minimalBtn.disabled = !isStyleActive;
-  basicBtn.disabled = !isStyleActive;
-  complexBtn.disabled = !isStyleActive;
-  painterlyBtn.disabled = !isStyleActive;
-  abstractBtn.disabled = !isStyleActive;
-  basicbackgroundBtn.disabled = !isStyleActive;
-  depthBtn.disabled = !isStyleActive;
-  complexbackgroundBtn.disabled = !isStyleActive;
-
-  [headshotBtn, halfbodyBtn, fullbodyBtn, coloredBtn, linelessBtn, minimalBtn, basicBtn, complexBtn, painterlyBtn, abstractBtn, basicbackgroundBtn, depthBtn, complexbackgroundBtn].forEach(btn => {
-    if (!isStyleActive) {
-      btn.classList.remove('active');
-      btn.classList.add('greyed-out'); // Ensure you have .greyed-out CSS
-      const input = btn === headshotBtn ? headshotInput : btn === halfbodyBtn ? halfbodyInput : fullbodyInput;
-      input.value = 0; // Reset input value to 0
-      input.classList.remove('input-active'); // Remove 'input-active' class
-    } else {
-      btn.classList.remove('greyed-out');
-    }
-  });
-}
-
-// Initially, buttons should be updated based on the current state
-updateButtonStates();
-
-// Define a function to handle the click event for the buttons
-function handleButtonClick(btn) {
-  // Toggle 'active' class for the button
-  btn.classList.toggle('active');
-  // Toggle 'greyed-out' class based on sketch or clean being active
-  btn.classList.toggle('greyed-out', !(sketchBtn.classList.contains('active') || cleanBtn.classList.contains('active')));
-  // Update total
-  updateTotal();
-}
-
-// Add click event listeners and update button states for each button
-[coloredBtn, minimalBtn, linelessBtn, basicBtn, complexBtn, painterlyBtn, abstractBtn, basicbackgroundBtn, depthBtn, complexbackgroundBtn].forEach(btn => {
-  btn.addEventListener('click', function() {
-    handleButtonClick(this); // Pass the clicked button to the function
-  });
-  updateButtonStates();
-});
-
-// Adjustments for drawing type buttons
-[headshotBtn, halfbodyBtn, fullbodyBtn].forEach(btn => {
-  btn.addEventListener('click', () => {
-    // Toggle 'active' state for clicked button
-    btn.classList.toggle('active');
-    // Enable/disable corresponding input based on 'active' state of button
-    const input = btn === headshotBtn ? headshotInput : btn === halfbodyBtn ? halfbodyInput : fullbodyInput;
-    input.disabled = !btn.classList.contains('active');
-    input.value = btn.classList.contains('active') ? 1 : 0; // Set input value to 1 if active, otherwise 0
-    
-    // Add or remove 'input-active' class based on 'active' state of button
-    if (btn.classList.contains('active')) {
-      input.classList.add('input-active');
-    } else {
-      input.classList.remove('input-active');
-    }
-    
-    updateTotal(); // Update total whenever a button is clicked
-  });
-});
-
-
-
-// Revised updateTotal with logic considering active styles and quantities
-function updateTotal() {
-  // Toggle 'greyed-out' class for coloredBtn based on sketch or clean being active
-  coloredBtn.classList.toggle('greyed-out', !(sketchBtn.classList.contains('active') || cleanBtn.classList.contains('active')));
-  linelessBtn.classList.toggle('greyed-out', !(sketchBtn.classList.contains('active') || cleanBtn.classList.contains('active')));
-  minimalBtn.classList.toggle('greyed-out', !(sketchBtn.classList.contains('active') || cleanBtn.classList.contains('active')));
-  basicBtn.classList.toggle('greyed-out', !(sketchBtn.classList.contains('active') || cleanBtn.classList.contains('active')));
-  complexBtn.classList.toggle('greyed-out', !(sketchBtn.classList.contains('active') || cleanBtn.classList.contains('active')));
-  painterlyBtn.classList.toggle('greyed-out', !(sketchBtn.classList.contains('active') || cleanBtn.classList.contains('active')));
-  abstractBtn.classList.toggle('greyed-out', !(sketchBtn.classList.contains('active') || cleanBtn.classList.contains('active')));
-  basicbackgroundBtn.classList.toggle('greyed-out', !(sketchBtn.classList.contains('active') || cleanBtn.classList.contains('active')));
-  depthBtn.classList.toggle('greyed-out', !(sketchBtn.classList.contains('active') || cleanBtn.classList.contains('active')));
-  complexbackgroundBtn.classList.toggle('greyed-out', !(sketchBtn.classList.contains('active') || cleanBtn.classList.contains('active')));
-
-  // Re-enable colored button only if sketch or clean is active
-  coloredBtn.disabled = !(sketchBtn.classList.contains('active') || cleanBtn.classList.contains('active'));
-  linelessBtn.disabled = !(sketchBtn.classList.contains('active') || cleanBtn.classList.contains('active'));
-  minimalBtn.disabled = !(sketchBtn.classList.contains('active') || cleanBtn.classList.contains('active'));
-  basicBtn.disabled = !(sketchBtn.classList.contains('active') || cleanBtn.classList.contains('active'));
-  complexBtn.disabled = !(sketchBtn.classList.contains('active') || cleanBtn.classList.contains('active'));
-  painterlyBtn.disabled = !(sketchBtn.classList.contains('active') || cleanBtn.classList.contains('active'));
-  abstractBtn.disabled = !(sketchBtn.classList.contains('active') || cleanBtn.classList.contains('active'));
-  basicbackgroundBtn.disabled = !(sketchBtn.classList.contains('active') || cleanBtn.classList.contains('active'));
-  depthBtn.disabled = !(sketchBtn.classList.contains('active') || cleanBtn.classList.contains('active'));
-  complexbackgroundBtn.disabled = !(sketchBtn.classList.contains('active') || cleanBtn.classList.contains('active'));
-
-  let total = 0;
-
-  // Initialize totals for each type
-  let headshotTotal = 0;
-  let halfbodyTotal = 0;
-  let fullbodyTotal = 0;
-
-  if (sketchBtn.classList.contains('active') || cleanBtn.classList.contains('active')) {
-    // Calculate totals based on active states and input values
-    if (headshotBtn.classList.contains('active')) {
-      let headshotPrice = sketchBtn.classList.contains('active') ? 80 : 250;
-      headshotTotal = parseInt(headshotInput.value) * headshotPrice;
-      // If you need to perform additional calculation with headshotTotal, do it here
-      // For example, multiplying headshotTotal by another factor and then adding to total
-      // total += headshotTotal * someOtherFactor; // Example adjustment
-    }
-    if (halfbodyBtn.classList.contains('active')) {
-      let halfbodyPrice = sketchBtn.classList.contains('active') ? 100 : 300;
-      halfbodyTotal = parseInt(halfbodyInput.value) * halfbodyPrice;
-    }
-    if (fullbodyBtn.classList.contains('active')) {
-      let fullbodyPrice = sketchBtn.classList.contains('active') ? 120 : 350;
-      fullbodyTotal = parseInt(fullbodyInput.value) * fullbodyPrice;
-    }
-
-    total = headshotTotal + halfbodyTotal + fullbodyTotal; // Update total sum
-
-    if (coloredBtn.classList.contains('active') && !(coloredBtn.classList.contains('greyed-out'))) {
-      total += 50; // Add 50 if colored is active and not greyed out
-    }
-    if (linelessBtn.classList.contains('active') && !(linelessBtn.classList.contains('greyed-out'))) {
-      total += 100;
-    }
-    if (minimalBtn.classList.contains('active') && !(minimalBtn.classList.contains('greyed-out'))) {
-      total += 30;
-    }
-    if (basicBtn.classList.contains('active') && !(minimalBtn.classList.contains('greyed-out'))) {
-      total += 100;
-    }
-    if (complexBtn.classList.contains('active') && !(minimalBtn.classList.contains('greyed-out'))) {
-      total += 200;
-    }
-    if (painterlyBtn.classList.contains('active') && !(minimalBtn.classList.contains('greyed-out'))) {
-      total += 500;
-    }
-    if (abstractBtn.classList.contains('active') && !(minimalBtn.classList.contains('greyed-out'))) {
-      total += 80;
-    }
-    if (basicbackgroundBtn.classList.contains('active') && !(minimalBtn.classList.contains('greyed-out'))) {
-      total += 200;
-    }
-    if (depthBtn.classList.contains('active') && !(minimalBtn.classList.contains('greyed-out'))) {
-      total += 600;
-    }
-    if (complexbackgroundBtn.classList.contains('active') && !(minimalBtn.classList.contains('greyed-out'))) {
-      total += 900;
-    }
-  }
-
-  // Update total display text
-  totalDisplay.textContent = total.toString();
-
-  let totalText = "";
-
-  if (sketchBtn.classList.contains('active')) {
-    totalText += "SKETCH\n\n";
-  }
-  if (cleanBtn.classList.contains('active')) {
-    totalText += "CLEAN LINED\n\n";
-  }
-  // Conditionally append details based on the 'active' class and calculate the total
-  if (sketchBtn.classList.contains('active') || cleanBtn.classList.contains('active')) {
-    if (headshotBtn.classList.contains('active')) {
-      totalText += `Headshot (${headshotInput.value}) = ${headshotTotal}\n`;
-    }
-    if (halfbodyBtn.classList.contains('active')) {
-      totalText += `Halfbody (${halfbodyInput.value}) = ${halfbodyTotal}\n`;
-    }
-    if (fullbodyBtn.classList.contains('active')) {
-      totalText += `Fullbody (${fullbodyInput.value}) = ${fullbodyTotal}\n`;
-    }
-  }
-    // Append "Colored" text conditionally, based on the 'coloredBtn' status
-    if (coloredBtn.classList.contains('active') && !(coloredBtn.classList.contains('greyed-out'))) {
-    totalText += "Colored Lines: +50\n"; // Add this line to include "Colored" in the totalText
-  }
-  if (linelessBtn.classList.contains('active') && !(linelessBtn.classList.contains('greyed-out'))) {
-    totalText += "Lineless: +100\n";
-  }
-  if (minimalBtn.classList.contains('active') && !(minimalBtn.classList.contains('greyed-out'))) {
-    totalText += "Minimal Shading: +30\n"; // Add this line to include "Colored" in the totalText
-  }
-  if (basicBtn.classList.contains('active') && !(minimalBtn.classList.contains('greyed-out'))) {
-    totalText += "Basic Shading: +100\n"; // Add this line to include "Colored" in the totalText
-  }
-  if (complexBtn.classList.contains('active') && !(minimalBtn.classList.contains('greyed-out'))) {
-    totalText += "Complex Shading: +200\n"; // Add this line to include "Colored" in the totalText
-  }
-  if (painterlyBtn.classList.contains('active') && !(minimalBtn.classList.contains('greyed-out'))) {
-    totalText += "Painterly Shading: +500\n"; // Add this line to include "Colored" in the totalText
-  }
-  if (abstractBtn.classList.contains('active') && !(minimalBtn.classList.contains('greyed-out'))) {
-    totalText += "Abstract Background: +80\n"; // Add this line to include "Colored" in the totalText
-  }
-  if (basicbackgroundBtn.classList.contains('active') && !(minimalBtn.classList.contains('greyed-out'))) {
-    totalText += "Basic Background: +200\n"; // Add this line to include "Colored" in the totalText
-  }
-  if (depthBtn.classList.contains('active') && !(minimalBtn.classList.contains('greyed-out'))) {
-    totalText += "Depth Background: +600\n"; // Add this line to include "Colored" in the totalText
-  }
-  if (complexbackgroundBtn.classList.contains('active') && !(minimalBtn.classList.contains('greyed-out'))) {
-    totalText += "Complex Background: +900\n"; // Add this line to include "Colored" in the totalText
-  }
-  totalText += `Total: ${total}`;
-  totalInput.value = totalText; // Update the textarea with the detailed breakdown
-}
-
-// Update event listeners for inputs to directly call updateTotal whenever input values change
-headshotInput.addEventListener('input', updateTotal);
-halfbodyInput.addEventListener('input', updateTotal);
-fullbodyInput.addEventListener('input', updateTotal);
-
-// Make sure to call updateButtonStates and updateTotal at least once to initialize the UI correctly.
-updateButtonStates();
-updateTotal();
-
-</script>  
-
+        <!-- -----------------------
+     JavaScript
+    ----------------------- -->
+    <script src="scripts.js"></script>
 </body>
 </html>

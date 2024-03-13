@@ -30,52 +30,110 @@ let headshotPrice = sketchBtn.classList.contains('active') ? 80 :
 
 
 // Existing code for button click handling and total updating...
-
-// Add logic for sketchBtn and cleanBtn
+// Add logic for sketchBtn
 sketchBtn.addEventListener('click', function() {
-  if (this.classList.contains('active')) {
-    this.classList.remove('active');
-  } else {
+  const isActive = this.classList.contains('active');
+  if (!isActive) {
+    // Add 'active' class to sketchBtn
     this.classList.add('active');
+    // Remove 'active' class from other buttons
     cleanBtn.classList.remove('active');
     threedBtn.classList.remove('active');
+  } else {
+    // Remove 'active' class from sketchBtn
+    this.classList.remove('active');
   }
+  // Update style pricing and button states
   updateStylePricing();
   updateButtonStates();
 });
 
+// Add logic for cleanBtn
 cleanBtn.addEventListener('click', function() {
-  if (this.classList.contains('active')) {
-    this.classList.remove('active');
-  } else {
+  const isActive = this.classList.contains('active');
+  if (!isActive) {
+    // Add 'active' class to cleanBtn
     this.classList.add('active');
+    // Remove 'active' class from other buttons
     sketchBtn.classList.remove('active');
     threedBtn.classList.remove('active');
+  } else {
+    // Remove 'active' class from cleanBtn
+    this.classList.remove('active');
   }
+  // Update style pricing and button states
   updateStylePricing();
   updateButtonStates();
 });
 
+// Add logic for threedBtn
 threedBtn.addEventListener('click', function() {
-  if (this.classList.contains('active')) {
+  const isActive = this.classList.contains('active');
+  if (!isActive) {
+    // Add 'active' class to threedBtn
+    this.classList.add('active');
+    // Remove 'active' class from other buttons
+    sketchBtn.classList.remove('active');
+    cleanBtn.classList.remove('active');
+    // Disable linelessBtn and coloredBtn when threedBtn is active
+    linelessBtn.classList.add('greyed-out');
+    linelessBtn.disabled = true;
+    coloredBtn.classList.add('greyed-out');
+    coloredBtn.disabled = true;
+    minimalBtn.classList.add('greyed-out');
+    minimalBtn.disabled = true;
+    basicBtn.classList.add('greyed-out');
+    basicBtn.disabled = true;
+    complexBtn.classList.add('greyed-out');
+    complexBtn.disabled = true;
+    painterlyBtn.classList.add('greyed-out');
+    painterlyBtn.disabled = true;
+    abstractBtn.classList.add('greyed-out');
+    abstractBtn.disabled = true;
+    basicbackgroundBtn.classList.add('greyed-out');
+    basicbackgroundBtn.disabled = true;
+    depthBtn.classList.add('greyed-out');
+    depthBtn.disabled = true;
+    complexbackgroundBtn.classList.add('greyed-out');
+    complexbackgroundBtn.disabled = true;
+    // Remove active class from coloredBtn when threedBtn is active
+    coloredBtn.classList.remove('active');
+  } else {
+    // Remove 'active' class from threedBtn
     this.classList.remove('active');
+    // Enable linelessBtn and coloredBtn if threedBtn is not active
+    linelessBtn.classList.remove('greyed-out');
+    linelessBtn.disabled = false;
     coloredBtn.classList.remove('greyed-out');
-    coloredBtn.disabled = false; // Enable coloredBtn if threedBtn is not active
+    coloredBtn.disabled = false;
+    minimalBtn.classList.remove('greyed-out');
+    minimalBtn.disabled = false;
+    basicBtn.classList.remove('greyed-out');
+    basicBtn.disabled = false;
+    complexBtn.classList.remove('greyed-out');
+    complexBtn.disabled = false;
+    painterlyBtn.classList.remove('greyed-out');
+    painterlyBtn.disabled = false;
+    abstractBtn.classList.remove('greyed-out');
+    abstractBtn.disabled = false;
+    basicbackgroundBtn.classList.remove('greyed-out');
+    basicbackgroundBtn.disabled = false;
+    depthBtn.classList.remove('greyed-out');
+    depthBtn.disabled = false;
+    complexbackgroundBtn.classList.remove('greyed-out');
+    complexbackgroundBtn.disabled = false;
+    // Make coloredBtn active if neither sketchBtn nor cleanBtn are active
     if (!sketchBtn.classList.contains('active') && !cleanBtn.classList.contains('active')) {
-      // If neither sketchBtn nor cleanBtn are active, make coloredBtn active
       coloredBtn.classList.add('active');
     }
-  } else {
-    this.classList.add('active');
-    sketchBtn.classList.remove('active');
-    cleanBtn.classList.remove('active');
-    coloredBtn.classList.remove('active');
-    coloredBtn.classList.add('greyed-out');
-    coloredBtn.disabled = true; // Disable coloredBtn when threedBtn is active
   }
+  // Update style pricing and button states
   updateStylePricing();
   updateButtonStates();
 });
+
+
+// uggggg
 
 function updateStylePricing() {
   if (sketchBtn.classList.contains('active')) {
@@ -111,20 +169,20 @@ function updateButtonStates() {
 
   // Disable coloredBtn only if neither sketchBtn nor cleanBtn is active
   coloredBtn.disabled = !(isSketchActive || isCleanActive) || isThreedActive;
+  linelessBtn.disabled = !(isSketchActive || isCleanActive) || isThreedActive;
+  minimalBtn.disabled = !(isSketchActive || isCleanActive) || isThreedActive;
+  basicBtn.disabled = !(isSketchActive || isCleanActive) || isThreedActive;
+  complexBtn.disabled = !(isSketchActive || isCleanActive) || isThreedActive;
+  painterlyBtn.disabled = !(isSketchActive || isCleanActive) || isThreedActive;
+  abstractBtn.disabled = !(isSketchActive || isCleanActive) || isThreedActive;
+  basicbackgroundBtn.disabled = !(isSketchActive || isCleanActive) || isThreedActive;
+  depthBtn.disabled = !(isSketchActive || isCleanActive) || isThreedActive;
+  complexbackgroundBtn.disabled = !(isSketchActive || isCleanActive) || isThreedActive;
 
-  // Disable linelessBtn if threedBtn is active
-  linelessBtn.disabled = !isStyleActive || isThreedActive;
-  // Toggle 'greyed-out' class for linelessBtn based on its disabled state
-  linelessBtn.classList.toggle('greyed-out', linelessBtn.disabled || (!isSketchActive && !isCleanActive));
-
-  minimalBtn.disabled = !isStyleActive;
-  basicBtn.disabled = !isStyleActive;
-  complexBtn.disabled = !isStyleActive;
-  painterlyBtn.disabled = !isStyleActive;
-  abstractBtn.disabled = !isStyleActive;
-  basicbackgroundBtn.disabled = !isStyleActive;
-  depthBtn.disabled = !isStyleActive;
-  complexbackgroundBtn.disabled = !isStyleActive;
+  // abstractBtn.disabled = !isStyleActive;
+  // basicbackgroundBtn.disabled = !isStyleActive;
+  // depthBtn.disabled = !isStyleActive;
+  // complexbackgroundBtn.disabled = !isStyleActive;
 
   // Iterate through all buttons to update their classes
   [headshotBtn, halfbodyBtn, fullbodyBtn, linelessBtn, minimalBtn, basicBtn, complexBtn, painterlyBtn, abstractBtn, basicbackgroundBtn, depthBtn, complexbackgroundBtn].forEach(btn => {
@@ -149,39 +207,127 @@ function updateButtonStates() {
   // Toggle 'greyed-out' class for coloredBtn based on sketch or clean being active
   coloredBtn.classList.toggle('greyed-out', !isStyleActive || isThreedActive);
 
-  // Toggle 'greyed-out' class for linelessBtn if threedBtn is active
-  linelessBtn.classList.toggle('greyed-out', isThreedActive || (!isSketchActive && !isCleanActive));
+  if (!isSketchActive && !isCleanActive) {
+    linelessBtn.classList.remove('active');
+  }
+
+  if (!isSketchActive && !isCleanActive) {
+    minimalBtn.classList.remove('active');
+  }
+
+  if (!isSketchActive && !isCleanActive) {
+    basicBtn.classList.remove('active');
+  }
+
+  if (!isSketchActive && !isCleanActive) {
+    complexBtn.classList.remove('active');
+  }
+
+  if (!isSketchActive && !isCleanActive) {
+    painterlyBtn.classList.remove('active');
+  }
+
+  if (!isSketchActive && !isCleanActive) {
+    abstractBtn.classList.remove('active');
+  }
+
+  if (!isSketchActive && !isCleanActive) {
+    basicbackgroundBtn.classList.remove('active');
+  }
+
+  if (!isSketchActive && !isCleanActive) {
+    depthBtn.classList.remove('active');
+  }
+
+  if (!isSketchActive && !isCleanActive) {
+    complexbackgroundBtn.classList.remove('active');
+  }
+
+  // Toggle 'greyed-out' class for linelessBtn based on sketch or clean being active
+  linelessBtn.classList.toggle('greyed-out', !isStyleActive || isThreedActive);
+  minimalBtn.classList.toggle('greyed-out', !isStyleActive || isThreedActive);
+  basicBtn.classList.toggle('greyed-out', !isStyleActive || isThreedActive);
+  complexBtn.classList.toggle('greyed-out', !isStyleActive || isThreedActive);
+  painterlyBtn.classList.toggle('greyed-out', !isStyleActive || isThreedActive);
+  abstractBtn.classList.toggle('greyed-out', !isStyleActive || isThreedActive);
+  basicbackgroundBtn.classList.toggle('greyed-out', !isStyleActive || isThreedActive);
+  depthBtn.classList.toggle('greyed-out', !isStyleActive || isThreedActive);
+  complexbackgroundBtn.classList.toggle('greyed-out', !isStyleActive || isThreedActive);
+
 }
 
 // Initially, buttons should be updated based on the current state
 updateButtonStates();
 
 // Define a function to handle the click event for the buttons
-// Define a function to handle the click event for the buttons
 function handleButtonClick(btn) {
-  // If the button clicked is coloredBtn, toggle its 'active' class directly
-  if (btn === coloredBtn) {
+  if (btn === coloredBtn || btn === linelessBtn || btn === minimalBtn || btn === basicBtn || btn === complexBtn || btn === painterlyBtn || btn === abstractBtn || btn === basicbackgroundBtn || btn === depthBtn || btn === complexbackgroundBtn) {
+    // If the button clicked is coloredBtn, linelessBtn, or minimalBtn, toggle its 'active' class directly
     btn.classList.toggle('active');
   } else {
     // Toggle 'active' class for other buttons
     btn.classList.toggle('active');
-    // Toggle 'greyed-out' class based on sketch or clean being active
+    // Toggle 'greyed-out' class based on sketch, clean, or threed being active
     btn.classList.toggle('greyed-out', !(sketchBtn.classList.contains('active') || cleanBtn.classList.contains('active') || threedBtn.classList.contains('active')));
   }
 
-  // If sketchBtn or cleanBtn is clicked, remove the active class from coloredBtn
+  // If sketchBtn or cleanBtn is clicked, remove the active class from coloredBtn, linelessBtn, and minimalBtn
   if (btn === sketchBtn || btn === cleanBtn) {
     coloredBtn.classList.remove('active');
+    linelessBtn.classList.remove('active');
+    minimalBtn.classList.remove('active');
+    basicBtn.classList.remove('active');
+    complexBtn.classList.remove('active');
+    painterlyBtn.classList.remove('active');
+    abstractBtn.classList.remove('active');
+    basicbackgroundBtn.classList.remove('active');
+    depthBtn.classList.remove('active');
+    complexbackgroundBtn.classList.remove('active');
   }
 
-  // If coloredBtn gains the greyed-out class, remove its active class
+  // If coloredBtn, linelessBtn, or minimalBtn gains the greyed-out class, remove its active class
   if (coloredBtn.classList.contains('greyed-out')) {
     coloredBtn.classList.remove('active');
+  }
+  if (linelessBtn.classList.contains('greyed-out')) {
+    linelessBtn.classList.remove('active');
+  }
+  if (minimalBtn.classList.contains('greyed-out')) {
+    minimalBtn.classList.remove('active');
+  }
+
+  if (basicBtn.classList.contains('greyed-out')) {
+    basicBtn.classList.remove('active');
+  }
+
+  if (complexBtn.classList.contains('greyed-out')) {
+    complexBtn.classList.remove('active');
+  }
+
+  if (painterlyBtn.classList.contains('greyed-out')) {
+    painterlyBtn.classList.remove('active');
+  }
+  if (abstractBtn.classList.contains('greyed-out')) {
+    abstractBtn.classList.remove('active');
+  }
+
+  if (basicbackgroundBtn.classList.contains('greyed-out')) {
+    basicbackgroundBtn.classList.remove('active');
+  }
+
+  if (depthBtn.classList.contains('greyed-out')) {
+    depthBtn.classList.remove('active');
+  }
+
+  if (complexbackgroundBtn.classList.contains('greyed-out')) {
+    complexbackgroundBtn.classList.remove('active');
   }
 
   // Update total
   updateTotal();
 }
+
+// grrrr
 
 // Add click event listeners and update button states for each button
 [coloredBtn, minimalBtn, linelessBtn, basicBtn, complexBtn, painterlyBtn, abstractBtn, basicbackgroundBtn, depthBtn, complexbackgroundBtn].forEach(btn => {
@@ -223,6 +369,15 @@ function updateTotal() {
   const isThreedActive = threedBtn.classList.contains('active');
 
   coloredBtn.classList.toggle('greyed-out', !isSketchOrCleanActive || isThreedActive);
+  linelessBtn.classList.toggle('greyed-out', !isSketchOrCleanActive || isThreedActive);
+  minimalBtn.classList.toggle('greyed-out', !isSketchOrCleanActive || isThreedActive);
+  basicBtn.classList.toggle('greyed-out', !isSketchOrCleanActive || isThreedActive);
+  complexBtn.classList.toggle('greyed-out', !isSketchOrCleanActive || isThreedActive);
+  painterlyBtn.classList.toggle('greyed-out', !isSketchOrCleanActive || isThreedActive);
+  abstractBtn.classList.toggle('greyed-out', !isSketchOrCleanActive || isThreedActive);
+  basicbackgroundBtn.classList.toggle('greyed-out', !isSketchOrCleanActive || isThreedActive);
+  depthBtn.classList.toggle('greyed-out', !isSketchOrCleanActive || isThreedActive);
+  complexbackgroundBtn.classList.toggle('greyed-out', !isSketchOrCleanActive || isThreedActive);
 
   let total = 0;
   let totalText = "";
